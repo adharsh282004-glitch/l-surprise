@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>For You ❤️</title>
+
+    <style>
+        body
+        {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            font-family: 'Segoe UI', sans-serif;
+            overflow: hidden;
+        }
+
+        .card
+        {
+            background: white;
+            padding: 30px 25px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            z-index: 2;
+        }
+
+        h1
+        {
+            color: #ff4d6d;
+            margin-bottom: 15px;
+        }
+
+        p
+        {
+            color: #555;
+            font-size: 16px;
+            margin-bottom: 25px;
+        }
+
+        button
+        {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            cursor: pointer;
+            background: #ff4d6d;
+            color: white;
+            transition: transform 0.2s, background 0.2s;
+        }
+
+        button:hover
+        {
+            background: #ff335a;
+            transform: scale(1.03);
+        }
+
+        .message
+        {
+            display: none;
+            margin-top: 20px;
+            font-size: 18px;
+            color: #ff4d6d;
+            font-weight: 600;
+        }
+
+        /* 💖 Final Screen */
+        .final-screen
+        {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ff758c, #ff7eb3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 1.5s ease;
+            z-index: 5;
+        }
+
+        .final-screen.show
+        {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .final-text
+        {
+            font-size: 48px;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .final-sub
+        {
+            margin-top: 15px;
+            font-size: 20px;
+            color: white;
+            opacity: 0.9;
+        }
+
+        .heart
+        {
+            font-size: 40px;
+            margin-top: 20px;
+            animation: beat 1s infinite;
+        }
+
+        @keyframes beat
+        {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- 🎶 Background Music -->
+<audio id="bgMusic" loop>
+    <source src="love-me-like-you-do.mp3" type="audio/mpeg">
+</audio>
+
+<div class="card" id="card">
+    <h1>Hey You 💕</h1>
+    <p>What does the name that you like to be called?</p>
+
+    <button onclick="showMessage('darling')">a) Darling</button>
+    <button onclick="showMessage('madam')">b) Madam</button>
+    <button onclick="showMessage('Mowgli')">c) Mowgli</button>
+
+    <div class="message" id="message"></div>
+</div>
+
+<!-- 💖 FINAL I LOVE YOU SCREEN -->
+<div class="final-screen" id="finalScreen">
+    <div class="final-text">I LOVE YOU ❤️</div>
+    <div class="final-sub">More than words can ever say</div>
+    <div class="heart">💖</div>
+</div>
+
+<script>
+    function showMessage(choice)
+    {
+        const messageDiv = document.getElementById("message");
+        const music = document.getElementById("bgMusic");
+        const finalScreen = document.getElementById("finalScreen");
+
+        music.play();
+
+        let text = "";
+
+        if (choice === "darling")
+        {
+            text = "Hey my darling 💖, every time I say your name, my heart melts a little more.";
+        }
+        else if (choice === "madam")
+        {
+            text = "Yes madam 😉, my heart officially follows your orders forever.";
+        }
+        else if (choice === "Mowgli")
+        {
+            text = "My cute little Mowgli 🐒💕, lost in the jungle of my heart forever.";
+        }
+
+        messageDiv.innerText = text;
+        messageDiv.style.display = "block";
+
+        // Show final screen after 2 seconds
+        setTimeout(function ()
+        {
+            finalScreen.classList.add("show");
+        }, 2000);
+    }
+</script>
+
+</body>
+</html>

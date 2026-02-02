@@ -78,17 +78,19 @@ button {
     border-radius: 20px;
 }
 
-#year {
-    font-size: 22px;
-    margin-top: 10px;
-}
-
 #message {
     margin: 20px auto;
     font-size: 18px;
     max-width: 600px;
-    min-height: 90px;
-    white-space: pre-line;
+    min-height: 120px;
+    white-space: pre-wrap;
+}
+
+.year-label {
+    font-size: 22px;
+    font-weight: bold;
+    color: #ffd1dc;
+    margin-bottom: 6px;
 }
 
 /* ❤️ Final Screen */
@@ -123,7 +125,6 @@ button {
 <div class="stars"></div>
 
 <h2>🌸 A Small Walk Together 🌸</h2>
-<div id="year"></div>
 
 <div id="scene">
     <div id="girl" class="character">👩</div>
@@ -162,7 +163,6 @@ const girl = document.getElementById("girl");
 const boy = document.getElementById("boy");
 const tree = document.getElementById("tree");
 const message = document.getElementById("message");
-const yearText = document.getElementById("year");
 const bgMusic = document.getElementById("bgMusic");
 const finalScreen = document.getElementById("finalScreen");
 
@@ -175,7 +175,7 @@ document.getElementById("walkBtn").onclick = () => {
 };
 
 document.getElementById("holdBtn").onclick = () => {
-    message.innerText = "🤝 And from that moment, life was together.";
+    message.innerHTML = "<div class='year-label'>2015</div>🤝 And from that moment, life was together.";
     document.getElementById("moveBtn").style.display = "inline-block";
     bgMusic.volume = 0.3;
     bgMusic.play();
@@ -184,8 +184,7 @@ document.getElementById("holdBtn").onclick = () => {
 
 document.getElementById("moveBtn").onclick = () => {
     year++;
-    yearText.innerText = year;
-    message.innerText = "";
+    message.innerHTML = "";
     tree.style.display = "block";
     document.getElementById("pluckBtn").style.display = "inline-block";
 
@@ -214,16 +213,19 @@ document.getElementById("pluckBtn").onclick = () => {
     };
 
     if (year < 2026) {
-        message.innerText = "🌳 " + messages[year];
+        message.innerHTML =
+            `<div class="year-label">${year}</div>🌳 ${messages[year]}`;
     }
 
     if (year === 2026) {
         typeMessage(
-`🌳 My dear ponnu,
+`2026
 
-You hold me in my darkest times,
-you been there with in my every season,
-just know that my whole heart wishing the most happiness for you.
+🌳 My dear ponnu,
+
+You hold me in my darkest times.
+You have been there with me in every season.
+Just know that my whole heart wishes you the most happiness.
 I love you. ❤️`
         );
         document.getElementById("pluckBtn").style.display = "none";
@@ -231,14 +233,13 @@ I love you. ❤️`
 
         setTimeout(() => {
             finalScreen.style.display = "flex";
-        }, 12000);
+        }, 14000);
     }
 };
 
 document.getElementById("replayBtn").onclick = () => {
     year = 2014;
-    yearText.innerText = "";
-    message.innerText = "";
+    message.innerHTML = "";
     tree.style.display = "none";
     boy.style.display = "none";
     finalScreen.style.display = "none";
@@ -262,7 +263,7 @@ function typeMessage(text) {
         message.innerText += text.charAt(i);
         i++;
         if (i === text.length) clearInterval(interval);
-    }, 80);
+    }, 100);
 }
 </script>
 

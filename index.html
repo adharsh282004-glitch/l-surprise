@@ -10,12 +10,11 @@ body {
     font-family: Arial, sans-serif;
     text-align: center;
     color: #fff;
-    overflow-x: hidden;
-    transition: background 2s ease;
+    overflow-x: auto;
     background: linear-gradient(#87ceeb, #f5f5f5);
 }
 
-/* 🌌 Moving Stars */
+/* 🌌 Stars */
 .stars {
     position: fixed;
     top: 0;
@@ -37,19 +36,44 @@ body {
     to { transform: translateX(-50%); }
 }
 
-/* 🌱 Path */
-#path {
+h2 {
+    margin-top: 20px;
+}
+
+/* 🌱 JOURNEY */
+#journey {
     position: relative;
-    margin: 120px auto 0;
-    width: 1400px;
-    height: 220px;
-    border-top: 3px dashed rgba(255,255,255,0.4);
+    width: 1800px;
+    height: 300px;
+    margin: 80px auto;
+}
+
+/* 🟫 PATH */
+#path {
+    position: absolute;
+    bottom: 40px;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    background: linear-gradient(#c2a679, #a68b5b);
+    border-radius: 35px;
+}
+
+#path::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: rgba(255,255,255,0.4);
+    transform: translateY(-50%);
 }
 
 /* 🌳 Trees */
 .tree {
     position: absolute;
-    bottom: 60px;
+    bottom: 120px;
     font-size: 60px;
     text-align: center;
 }
@@ -57,31 +81,29 @@ body {
 .tree span {
     display: block;
     font-size: 16px;
-    margin-top: 5px;
     color: #ffd1dc;
 }
 
 /* 👩👨 Couple */
 #couple {
     position: absolute;
-    bottom: 0;
+    bottom: 60px;
     left: 0;
+    font-size: 48px;
     transition: left 1.5s ease;
-    font-size: 50px;
 }
 
 /* 💬 Message */
 #message {
-    margin-top: 30px;
     font-size: 18px;
     max-width: 650px;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 20px auto;
     white-space: pre-wrap;
 }
 
+/* Buttons */
 button {
-    margin: 8px;
+    margin: 6px;
     padding: 10px 18px;
     font-size: 15px;
     border-radius: 20px;
@@ -89,28 +111,16 @@ button {
     cursor: pointer;
 }
 
-/* ❤️ Final Screen */
+/* ❤️ Final */
 #finalScreen {
     display: none;
     position: fixed;
     inset: 0;
     background: radial-gradient(#000, #020617);
+    color: #ffb6c1;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-}
-
-#finalScreen h1 {
-    color: #ffb6c1;
-    font-size: 36px;
-}
-
-#replayBtn {
-    margin-top: 20px;
-    padding: 12px 22px;
-    border-radius: 25px;
-    background: #ffb6c1;
-    border: none;
 }
 </style>
 </head>
@@ -121,24 +131,27 @@ button {
 
 <h2>🌸 A Small Walk Together 🌸</h2>
 
-<div id="path">
+<div id="journey">
 
-    <!-- 👩👨 -->
+    <!-- Path -->
+    <div id="path"></div>
+
+    <!-- Couple -->
     <div id="couple">👩 🤍 👨</div>
 
-    <!-- 🌳 Trees along the path -->
-    <div class="tree" style="left:100px">🌳<span>2015</span></div>
-    <div class="tree" style="left:200px">🌳<span>2016</span></div>
-    <div class="tree" style="left:300px">🌳<span>2017</span></div>
-    <div class="tree" style="left:400px">🌳<span>2018</span></div>
-    <div class="tree" style="left:500px">🌳<span>2019</span></div>
-    <div class="tree" style="left:650px">🌳<span>2020</span></div>
-    <div class="tree" style="left:800px">🌳<span>2021</span></div>
-    <div class="tree" style="left:950px">🌳<span>2022</span></div>
-    <div class="tree" style="left:1100px">🌳<span>2023</span></div>
-    <div class="tree" style="left:1250px">🌳<span>2024</span></div>
-    <div class="tree" style="left:1400px">🌳<span>2025</span></div>
-    <div class="tree" style="left:1550px">🌳<span>2026</span></div>
+    <!-- Trees -->
+    <div class="tree" style="left:120px">🌳<span>2015</span></div>
+    <div class="tree" style="left:260px">🌳<span>2016</span></div>
+    <div class="tree" style="left:400px">🌳<span>2017</span></div>
+    <div class="tree" style="left:540px">🌳<span>2018</span></div>
+    <div class="tree" style="left:680px">🌳<span>2019</span></div>
+    <div class="tree" style="left:840px">🌳<span>2020</span></div>
+    <div class="tree" style="left:1000px">🌳<span>2021</span></div>
+    <div class="tree" style="left:1160px">🌳<span>2022</span></div>
+    <div class="tree" style="left:1320px">🌳<span>2023</span></div>
+    <div class="tree" style="left:1480px">🌳<span>2024</span></div>
+    <div class="tree" style="left:1640px">🌳<span>2025</span></div>
+    <div class="tree" style="left:1800px">🌳<span>2026</span></div>
 
 </div>
 
@@ -149,15 +162,15 @@ button {
 
 <div id="message"></div>
 
-<!-- 🎵 Music -->
+<!-- 🎵 MUSIC : NEEYEN VENNILA -->
 <audio id="bgMusic" loop>
-    <source src="oorum-blood.mp3" type="audio/mpeg">
+    <source src="neeyen-vennila.mp3" type="audio/mpeg">
 </audio>
 
 <!-- ❤️ Final -->
 <div id="finalScreen">
     <h1>❤️ Forever ❤️</h1>
-    <button id="replayBtn">Replay</button>
+    <button onclick="location.reload()">Replay</button>
 </div>
 
 <script>
@@ -166,38 +179,36 @@ const message = document.getElementById("message");
 const bgMusic = document.getElementById("bgMusic");
 const finalScreen = document.getElementById("finalScreen");
 
-let years = [
-    [2015, "You loved me."],
-    [2016, "You loved me the most."],
-    [2017, "You made me feel so blessed."],
-    [2018, "You filled my life with happiness."],
-    [2019, "Loving you became my peace."],
-    [2020, "Thank you for holding me in my darkest times."],
-    [2021, "Thank you for holding me when I was weak."],
-    [2022, "Thank you for having me."],
-    [2023, "Thank you for being my love."],
-    [2024, "Everything in my life changed in a good way because of you."],
-    [2025, "You stayed, even when life was hard."],
-    [2026, null]
+const journeyPoints = [
+    [120, "2015\n🌳 You loved me."],
+    [260, "2016\n🌳 You loved me the most."],
+    [400, "2017\n🌳 You made me feel so blessed."],
+    [540, "2018\n🌳 You filled my life with happiness."],
+    [680, "2019\n🌳 Loving you became my peace."],
+    [840, "2020\n🌳 Thank you for holding me in my darkest times."],
+    [1000, "2021\n🌳 Thank you for holding me when I was weak."],
+    [1160, "2022\n🌳 Thank you for having me."],
+    [1320, "2023\n🌳 Thank you for being my love."],
+    [1480, "2024\n🌳 Everything in my life changed in a good way because of you."],
+    [1640, "2025\n🌳 You stayed, even when life was hard."],
+    [1800, null]
 ];
 
-let index = 0;
+let step = 0;
 
 document.getElementById("startBtn").onclick = () => {
     bgMusic.volume = 0.4;
     bgMusic.play();
-    document.getElementById("nextBtn").style.display = "inline-block";
     document.getElementById("startBtn").style.display = "none";
+    document.getElementById("nextBtn").style.display = "inline-block";
 };
 
 document.getElementById("nextBtn").onclick = () => {
-    const year = years[index][0];
-    const text = years[index][1];
+    const [pos, text] = journeyPoints[step];
+    couple.style.left = pos + "px";
 
-    couple.style.left = (index * 120 + 100) + "px";
-
-    if (year !== 2026) {
-        message.innerHTML = `<b>${year}</b>\n🌳 ${text}`;
+    if (text) {
+        message.innerText = text;
     } else {
         typeMessage(
 `2026
@@ -212,16 +223,7 @@ I love you. ❤️`
         document.getElementById("nextBtn").style.display = "none";
         setTimeout(() => finalScreen.style.display = "flex", 14000);
     }
-
-    index++;
-};
-
-document.getElementById("replayBtn").onclick = () => {
-    index = 0;
-    couple.style.left = "0px";
-    message.innerText = "";
-    finalScreen.style.display = "none";
-    bgMusic.currentTime = 0;
+    step++;
 };
 
 function typeMessage(text) {

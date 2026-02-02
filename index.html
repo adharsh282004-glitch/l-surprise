@@ -10,7 +10,7 @@ body {
     font-family: Arial, sans-serif;
     text-align: center;
     color: #fff;
-    overflow: hidden;
+    overflow-x: hidden;
     transition: background 2s ease;
     background: linear-gradient(#87ceeb, #f5f5f5);
 }
@@ -28,69 +28,65 @@ body {
         radial-gradient(2px 2px at 30% 70%, white, transparent),
         radial-gradient(2px 2px at 50% 40%, white, transparent),
         radial-gradient(2px 2px at 70% 80%, white, transparent),
-        radial-gradient(2px 2px at 90% 30%, white, transparent),
-        radial-gradient(1.5px 1.5px at 20% 50%, white, transparent),
-        radial-gradient(1.5px 1.5px at 60% 10%, white, transparent),
-        radial-gradient(1.5px 1.5px at 80% 60%, white, transparent);
-    animation: starMove 90s linear infinite, twinkle 4s ease-in-out infinite;
+        radial-gradient(2px 2px at 90% 30%, white, transparent);
+    animation: starMove 120s linear infinite;
 }
 
 @keyframes starMove {
     from { transform: translateX(0); }
-    to   { transform: translateX(-50%); }
+    to { transform: translateX(-50%); }
 }
 
-@keyframes twinkle {
-    0%, 100% { opacity: 0.4; }
-    50% { opacity: 1; }
+/* 🌱 Path */
+#path {
+    position: relative;
+    margin: 120px auto 0;
+    width: 1400px;
+    height: 220px;
+    border-top: 3px dashed rgba(255,255,255,0.4);
 }
 
-#scene {
-    margin-top: 80px;
-}
-
-.character {
-    font-size: 60px;
-    display: none;
-}
-
+/* 🌳 Trees */
 .tree {
-    font-size: 70px;
-    display: none;
+    position: absolute;
+    bottom: 60px;
+    font-size: 60px;
+    text-align: center;
 }
 
-.pluck-effect {
-    animation: pop 0.5s ease;
+.tree span {
+    display: block;
+    font-size: 16px;
+    margin-top: 5px;
+    color: #ffd1dc;
 }
 
-@keyframes pop {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.3); }
-    100% { transform: scale(1); }
+/* 👩👨 Couple */
+#couple {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transition: left 1.5s ease;
+    font-size: 50px;
+}
+
+/* 💬 Message */
+#message {
+    margin-top: 30px;
+    font-size: 18px;
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+    white-space: pre-wrap;
 }
 
 button {
     margin: 8px;
     padding: 10px 18px;
     font-size: 15px;
-    cursor: pointer;
-    border: none;
     border-radius: 20px;
-}
-
-#message {
-    margin: 20px auto;
-    font-size: 18px;
-    max-width: 600px;
-    min-height: 120px;
-    white-space: pre-wrap;
-}
-
-.year-label {
-    font-size: 22px;
-    font-weight: bold;
-    color: #ffd1dc;
-    margin-bottom: 6px;
+    border: none;
+    cursor: pointer;
 }
 
 /* ❤️ Final Screen */
@@ -105,17 +101,16 @@ button {
 }
 
 #finalScreen h1 {
-    font-size: 36px;
     color: #ffb6c1;
+    font-size: 36px;
 }
 
 #replayBtn {
     margin-top: 20px;
     padding: 12px 22px;
-    font-size: 16px;
     border-radius: 25px;
     background: #ffb6c1;
-    color: #000;
+    border: none;
 }
 </style>
 </head>
@@ -126,96 +121,84 @@ button {
 
 <h2>🌸 A Small Walk Together 🌸</h2>
 
-<div id="scene">
-    <div id="girl" class="character">👩</div>
-    <div id="boy" class="character">👨</div>
-    <div id="tree" class="tree">🌳🍎</div>
+<div id="path">
+
+    <!-- 👩👨 -->
+    <div id="couple">👩 🤍 👨</div>
+
+    <!-- 🌳 Trees along the path -->
+    <div class="tree" style="left:100px">🌳<span>2015</span></div>
+    <div class="tree" style="left:200px">🌳<span>2016</span></div>
+    <div class="tree" style="left:300px">🌳<span>2017</span></div>
+    <div class="tree" style="left:400px">🌳<span>2018</span></div>
+    <div class="tree" style="left:500px">🌳<span>2019</span></div>
+    <div class="tree" style="left:650px">🌳<span>2020</span></div>
+    <div class="tree" style="left:800px">🌳<span>2021</span></div>
+    <div class="tree" style="left:950px">🌳<span>2022</span></div>
+    <div class="tree" style="left:1100px">🌳<span>2023</span></div>
+    <div class="tree" style="left:1250px">🌳<span>2024</span></div>
+    <div class="tree" style="left:1400px">🌳<span>2025</span></div>
+    <div class="tree" style="left:1550px">🌳<span>2026</span></div>
+
 </div>
 
 <div>
-    <button id="walkBtn">Walk Forward</button>
-    <button id="holdBtn" style="display:none;">Hold Hands</button>
-    <button id="moveBtn" style="display:none;">Move Forward</button>
-    <button id="pluckBtn" style="display:none;">Pluck Apple</button>
+    <button id="startBtn">Hold Hands</button>
+    <button id="nextBtn" style="display:none;">Walk Forward</button>
 </div>
 
 <div id="message"></div>
 
-<!-- 🎵 ONLY MUSIC -->
+<!-- 🎵 Music -->
 <audio id="bgMusic" loop>
     <source src="oorum-blood.mp3" type="audio/mpeg">
 </audio>
 
-<!-- ❤️ Final Screen -->
+<!-- ❤️ Final -->
 <div id="finalScreen">
     <h1>❤️ Forever ❤️</h1>
     <button id="replayBtn">Replay</button>
 </div>
 
 <script>
-let year = 2014;
-
-const girl = document.getElementById("girl");
-const boy = document.getElementById("boy");
-const tree = document.getElementById("tree");
+const couple = document.getElementById("couple");
 const message = document.getElementById("message");
 const bgMusic = document.getElementById("bgMusic");
 const finalScreen = document.getElementById("finalScreen");
 
-girl.style.display = "block";
+let years = [
+    [2015, "You loved me."],
+    [2016, "You loved me the most."],
+    [2017, "You made me feel so blessed."],
+    [2018, "You filled my life with happiness."],
+    [2019, "Loving you became my peace."],
+    [2020, "Thank you for holding me in my darkest times."],
+    [2021, "Thank you for holding me when I was weak."],
+    [2022, "Thank you for having me."],
+    [2023, "Thank you for being my love."],
+    [2024, "Everything in my life changed in a good way because of you."],
+    [2025, "You stayed, even when life was hard."],
+    [2026, null]
+];
 
-document.getElementById("walkBtn").onclick = () => {
-    boy.style.display = "block";
-    document.getElementById("holdBtn").style.display = "inline-block";
-    document.getElementById("walkBtn").style.display = "none";
-};
+let index = 0;
 
-document.getElementById("holdBtn").onclick = () => {
-    message.innerHTML =
-        "<div class='year-label'>2015</div>🤝 And from that moment, life was together.";
-    document.getElementById("moveBtn").style.display = "inline-block";
-
+document.getElementById("startBtn").onclick = () => {
     bgMusic.volume = 0.4;
     bgMusic.play();
-
-    document.getElementById("holdBtn").style.display = "none";
+    document.getElementById("nextBtn").style.display = "inline-block";
+    document.getElementById("startBtn").style.display = "none";
 };
 
-document.getElementById("moveBtn").onclick = () => {
-    year++;
-    message.innerHTML = "";
-    tree.style.display = "block";
-    document.getElementById("pluckBtn").style.display = "inline-block";
+document.getElementById("nextBtn").onclick = () => {
+    const year = years[index][0];
+    const text = years[index][1];
 
-    const darkness = (year - 2015) * 5;
-    document.body.style.background =
-        `linear-gradient(rgb(${135-darkness},${206-darkness},${235-darkness}), #020617)`;
-};
+    couple.style.left = (index * 120 + 100) + "px";
 
-document.getElementById("pluckBtn").onclick = () => {
-    tree.classList.add("pluck-effect");
-    setTimeout(() => tree.classList.remove("pluck-effect"), 500);
-
-    const messages = {
-        2015: "You loved me.",
-        2016: "You loved me the most.",
-        2017: "You made me feel so blessed.",
-        2018: "You filled my life with happiness.",
-        2019: "Loving you became my peace.",
-        2020: "Thank you for holding me in my darkest times.",
-        2021: "Thank you for holding me when I was weak.",
-        2022: "Thank you for having me.",
-        2023: "Thank you for being my love.",
-        2024: "Everything in my life changed in a good way because of you.",
-        2025: "You stayed, even when life was hard."
-    };
-
-    if (year < 2026) {
-        message.innerHTML =
-            `<div class="year-label">${year}</div>🌳 ${messages[year]}`;
-    }
-
-    if (year === 2026) {
+    if (year !== 2026) {
+        message.innerHTML = `<b>${year}</b>\n🌳 ${text}`;
+    } else {
         typeMessage(
 `2026
 
@@ -226,31 +209,18 @@ You have been there with me in every season.
 Just know that my whole heart wishes you the most happiness.
 I love you. ❤️`
         );
-        document.getElementById("pluckBtn").style.display = "none";
-        document.getElementById("moveBtn").style.display = "none";
-
-        setTimeout(() => {
-            finalScreen.style.display = "flex";
-        }, 14000);
+        document.getElementById("nextBtn").style.display = "none";
+        setTimeout(() => finalScreen.style.display = "flex", 14000);
     }
+
+    index++;
 };
 
 document.getElementById("replayBtn").onclick = () => {
-    year = 2014;
-    message.innerHTML = "";
-    tree.style.display = "none";
-    boy.style.display = "none";
+    index = 0;
+    couple.style.left = "0px";
+    message.innerText = "";
     finalScreen.style.display = "none";
-
-    document.body.style.background =
-        "linear-gradient(#87ceeb, #f5f5f5)";
-
-    document.getElementById("walkBtn").style.display = "inline-block";
-    document.getElementById("holdBtn").style.display = "none";
-    document.getElementById("moveBtn").style.display = "none";
-    document.getElementById("pluckBtn").style.display = "none";
-
-    bgMusic.pause();
     bgMusic.currentTime = 0;
 };
 

@@ -6,13 +6,47 @@
 
 <style>
 body {
+    margin: 0;
     font-family: Arial, sans-serif;
-    background: #f5f5f5;
     text-align: center;
+    color: #fff;
+    overflow: hidden;
+    transition: background 2s ease;
+    background: linear-gradient(#87ceeb, #f5f5f5);
+}
+
+/* 🌌 Moving Stars */
+.stars {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 100%;
+    pointer-events: none;
+    background-image:
+        radial-gradient(2px 2px at 10% 20%, white, transparent),
+        radial-gradient(2px 2px at 30% 70%, white, transparent),
+        radial-gradient(2px 2px at 50% 40%, white, transparent),
+        radial-gradient(2px 2px at 70% 80%, white, transparent),
+        radial-gradient(2px 2px at 90% 30%, white, transparent),
+        radial-gradient(1.5px 1.5px at 20% 50%, white, transparent),
+        radial-gradient(1.5px 1.5px at 60% 10%, white, transparent),
+        radial-gradient(1.5px 1.5px at 80% 60%, white, transparent);
+    animation: starMove 90s linear infinite, twinkle 4s ease-in-out infinite;
+}
+
+@keyframes starMove {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
 }
 
 #scene {
-    margin-top: 40px;
+    margin-top: 80px;
 }
 
 .character {
@@ -25,32 +59,76 @@ body {
     display: none;
 }
 
+.pluck-effect {
+    animation: pop 0.5s ease;
+}
+
+@keyframes pop {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.3); }
+    100% { transform: scale(1); }
+}
+
 button {
-    margin: 10px;
-    padding: 10px 20px;
-    font-size: 16px;
+    margin: 8px;
+    padding: 10px 18px;
+    font-size: 15px;
     cursor: pointer;
+    border: none;
+    border-radius: 20px;
+}
+
+#year {
+    font-size: 22px;
+    margin-top: 10px;
 }
 
 #message {
-    margin-top: 20px;
+    margin: 20px auto;
     font-size: 18px;
-    color: #444;
+    max-width: 600px;
+    min-height: 90px;
+    white-space: pre-line;
+}
+
+/* ❤️ Final Screen */
+#finalScreen {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(#000, #020617);
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#finalScreen h1 {
+    font-size: 36px;
+    color: #ffb6c1;
+}
+
+#replayBtn {
+    margin-top: 20px;
+    padding: 12px 22px;
+    font-size: 16px;
+    border-radius: 25px;
+    background: #ffb6c1;
+    color: #000;
 }
 </style>
 </head>
 
 <body>
 
+<div class="stars"></div>
+
 <h2>🌸 A Small Walk Together 🌸</h2>
+<div id="year"></div>
 
 <div id="scene">
     <div id="girl" class="character">👩</div>
     <div id="boy" class="character">👨</div>
-
-    <div id="tree1" class="tree">🌳🍎</div>
-    <div id="tree2" class="tree">🌳🍎</div>
-    <div id="tree3" class="tree">🌳🍎</div>
+    <div id="tree" class="tree">🌳🍎</div>
 </div>
 
 <div>
@@ -62,58 +140,130 @@ button {
 
 <div id="message"></div>
 
+<!-- 🔊 Sounds -->
+<audio id="pluckSound">
+    <source src="https://www.soundjay.com/buttons/sounds/button-16.mp3">
+</audio>
+
+<audio id="bgMusic" loop>
+    <source src="https://cdn.pixabay.com/audio/2022/10/30/audio_8c9b46f8c2.mp3">
+</audio>
+
+<!-- ❤️ Final Screen -->
+<div id="finalScreen">
+    <h1>❤️ Forever ❤️</h1>
+    <button id="replayBtn">Replay</button>
+</div>
+
 <script>
-let stage = 0;
+let year = 2014;
 
-document.getElementById("girl").style.display = "block";
+const girl = document.getElementById("girl");
+const boy = document.getElementById("boy");
+const tree = document.getElementById("tree");
+const message = document.getElementById("message");
+const yearText = document.getElementById("year");
+const bgMusic = document.getElementById("bgMusic");
+const finalScreen = document.getElementById("finalScreen");
 
-document.getElementById("walkBtn").onclick = function () {
-    document.getElementById("boy").style.display = "block";
+girl.style.display = "block";
+
+document.getElementById("walkBtn").onclick = () => {
+    boy.style.display = "block";
     document.getElementById("holdBtn").style.display = "inline-block";
-    this.style.display = "none";
+    document.getElementById("walkBtn").style.display = "none";
 };
 
-document.getElementById("holdBtn").onclick = function () {
-    document.getElementById("message").innerText = "🤝 You are holding hands.";
+document.getElementById("holdBtn").onclick = () => {
+    message.innerText = "🤝 And from that moment, life was together.";
     document.getElementById("moveBtn").style.display = "inline-block";
-    this.style.display = "none";
+    bgMusic.volume = 0.3;
+    bgMusic.play();
+    document.getElementById("holdBtn").style.display = "none";
 };
 
-document.getElementById("moveBtn").onclick = function () {
-    stage++;
-    document.getElementById("message").innerText = "";
-
-    if (stage === 1) {
-        document.getElementById("tree1").style.display = "block";
-    } 
-    else if (stage === 2) {
-        document.getElementById("tree1").style.display = "none";
-        document.getElementById("tree2").style.display = "block";
-    } 
-    else if (stage === 3) {
-        document.getElementById("tree2").style.display = "none";
-        document.getElementById("tree3").style.display = "block";
-    }
-
+document.getElementById("moveBtn").onclick = () => {
+    year++;
+    yearText.innerText = year;
+    message.innerText = "";
+    tree.style.display = "block";
     document.getElementById("pluckBtn").style.display = "inline-block";
+
+    const darkness = (year - 2015) * 5;
+    document.body.style.background =
+        `linear-gradient(rgb(${135-darkness},${206-darkness},${235-darkness}), #020617)`;
 };
 
-document.getElementById("pluckBtn").onclick = function () {
-    if (stage === 1) {
-        document.getElementById("message").innerText =
-        "🌳 Thank you for being in my life.";
-    } 
-    else if (stage === 2) {
-        document.getElementById("message").innerText =
-        "🌳 You make my days brighter.";
-    } 
-    else if (stage === 3) {
-        document.getElementById("message").innerText =
-        "🌳 (Final message will be added here ❤️)";
-        this.style.display = "none";
+document.getElementById("pluckBtn").onclick = () => {
+    document.getElementById("pluckSound").play();
+    tree.classList.add("pluck-effect");
+    setTimeout(() => tree.classList.remove("pluck-effect"), 500);
+
+    const messages = {
+        2015: "You loved me.",
+        2016: "You loved me the most.",
+        2017: "You made me feel so blessed.",
+        2018: "You filled my life with happiness.",
+        2019: "Loving you became my peace.",
+        2020: "Thank you for holding me in my darkest times.",
+        2021: "Thank you for holding me when I was weak.",
+        2022: "Thank you for having me.",
+        2023: "Thank you for being my love.",
+        2024: "Everything in my life changed in a good way because of you.",
+        2025: "You stayed, even when life was hard."
+    };
+
+    if (year < 2026) {
+        message.innerText = "🌳 " + messages[year];
+    }
+
+    if (year === 2026) {
+        typeMessage(
+`🌳 My dear ponnu,
+
+You hold me in my darkest times,
+you been there with in my every season,
+just know that my whole heart wishing the most happiness for you.
+I love you. ❤️`
+        );
+        document.getElementById("pluckBtn").style.display = "none";
         document.getElementById("moveBtn").style.display = "none";
+
+        setTimeout(() => {
+            finalScreen.style.display = "flex";
+        }, 12000);
     }
 };
+
+document.getElementById("replayBtn").onclick = () => {
+    year = 2014;
+    yearText.innerText = "";
+    message.innerText = "";
+    tree.style.display = "none";
+    boy.style.display = "none";
+    finalScreen.style.display = "none";
+
+    document.body.style.background =
+        "linear-gradient(#87ceeb, #f5f5f5)";
+
+    document.getElementById("walkBtn").style.display = "inline-block";
+    document.getElementById("holdBtn").style.display = "none";
+    document.getElementById("moveBtn").style.display = "none";
+    document.getElementById("pluckBtn").style.display = "none";
+
+    bgMusic.pause();
+    bgMusic.currentTime = 0;
+};
+
+function typeMessage(text) {
+    message.innerText = "";
+    let i = 0;
+    const interval = setInterval(() => {
+        message.innerText += text.charAt(i);
+        i++;
+        if (i === text.length) clearInterval(interval);
+    }, 80);
+}
 </script>
 
 </body>

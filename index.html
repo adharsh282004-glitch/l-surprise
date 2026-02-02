@@ -141,13 +141,9 @@ button {
 
 <div id="message"></div>
 
-<!-- 🔊 Sounds -->
-<audio id="pluckSound">
-    <source src="https://www.soundjay.com/buttons/sounds/button-16.mp3">
-</audio>
-
+<!-- 🎵 ONLY MUSIC -->
 <audio id="bgMusic" loop>
-    <source src="https://cdn.pixabay.com/audio/2022/10/30/audio_8c9b46f8c2.mp3">
+    <source src="oorum-blood.mp3" type="audio/mpeg">
 </audio>
 
 <!-- ❤️ Final Screen -->
@@ -175,10 +171,13 @@ document.getElementById("walkBtn").onclick = () => {
 };
 
 document.getElementById("holdBtn").onclick = () => {
-    message.innerHTML = "<div class='year-label'>2015</div>🤝 And from that moment, life was together.";
+    message.innerHTML =
+        "<div class='year-label'>2015</div>🤝 And from that moment, life was together.";
     document.getElementById("moveBtn").style.display = "inline-block";
-    bgMusic.volume = 0.3;
+
+    bgMusic.volume = 0.4;
     bgMusic.play();
+
     document.getElementById("holdBtn").style.display = "none";
 };
 
@@ -194,7 +193,6 @@ document.getElementById("moveBtn").onclick = () => {
 };
 
 document.getElementById("pluckBtn").onclick = () => {
-    document.getElementById("pluckSound").play();
     tree.classList.add("pluck-effect");
     setTimeout(() => tree.classList.remove("pluck-effect"), 500);
 

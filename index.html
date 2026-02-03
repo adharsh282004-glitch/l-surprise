@@ -70,25 +70,27 @@ h2 {
     color: #b5838d;
 }
 
-/* 👩🤝👨 Couple (tighter spacing) */
+/* 👩🤝👨 Couple (scaled to 75%) */
 #couple {
     position: absolute;
     bottom: 68px;
     left: 8%;
     display: flex;
-    gap: 2px;              /* ✅ reduced gap */
+    gap: 2px;
     align-items: center;
     transition: left 1.5s ease;
+    transform: scale(0.75);          /* ✅ 3/4 size */
+    transform-origin: left center;   /* keeps alignment */
 }
 
 #couple img {
-    width: 44px;           /* slightly smaller for better fit */
+    width: 44px;
     height: auto;
     object-fit: contain;
 }
 
 .handshake {
-    font-size: 20px;       /* balanced size */
+    font-size: 20px;
     line-height: 1;
 }
 

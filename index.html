@@ -10,7 +10,7 @@ body {
     margin: 0;
     font-family: Arial, sans-serif;
     text-align: center;
-    color: #2f3e46; /* ✅ MAIN TEXT COLOR (soft dark) */
+    color: #2f3e46;
     background: linear-gradient(#87ceeb, #f5f5f5);
     overflow-x: hidden;
 }
@@ -34,7 +34,7 @@ body {
 
 h2 {
     margin-top: 20px;
-    color: #354f52; /* darker heading */
+    color: #354f52;
 }
 
 /* 🌱 Journey */
@@ -49,22 +49,11 @@ h2 {
 #path {
     position: absolute;
     bottom: 60px;
-    left: 10%;
-    width: 80%;
+    left: 8%;
+    width: 84%;
     height: 50px;
     background: linear-gradient(#c2a679, #a68b5b);
     border-radius: 25px;
-}
-
-#path::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background: rgba(255,255,255,0.5);
-    transform: translateY(-50%);
 }
 
 /* 🌳 Trees */
@@ -78,16 +67,25 @@ h2 {
 .tree span {
     display: block;
     font-size: 14px;
-    color: #b5838d; /* 🌸 year color */
+    color: #b5838d;
 }
 
-/* 👩👨 Couple */
+/* 👩👨 Couple (PNG – transparent background) */
 #couple {
     position: absolute;
-    bottom: 70px;
-    left: 10%;
-    font-size: 38px;
+    bottom: 68px;
+    left: 8%;
+    display: flex;
+    gap: 8px;
+    align-items: center;
     transition: left 1.5s ease;
+}
+
+#couple img {
+    width: 46px;
+    height: auto;
+    object-fit: contain;
+    /* no border, no background — natural PNG look */
 }
 
 /* 💬 Message */
@@ -96,7 +94,7 @@ h2 {
     font-size: 16px;
     max-width: 90%;
     white-space: pre-wrap;
-    color: #344e41; /* 🌿 readable message color */
+    color: #344e41;
 }
 
 /* Buttons */
@@ -134,21 +132,21 @@ button {
 
 <div id="journey">
     <div id="path"></div>
-    <div id="couple">👩 🤍 👨</div>
 
-    <!-- Trees -->
-    <div class="tree" style="left:12%;">🌳<span>2015</span></div>
-    <div class="tree" style="left:18%;">🌳<span>2016</span></div>
-    <div class="tree" style="left:24%;">🌳<span>2017</span></div>
-    <div class="tree" style="left:30%;">🌳<span>2018</span></div>
-    <div class="tree" style="left:36%;">🌳<span>2019</span></div>
-    <div class="tree" style="left:44%;">🌳<span>2020</span></div>
-    <div class="tree" style="left:52%;">🌳<span>2021</span></div>
-    <div class="tree" style="left:60%;">🌳<span>2022</span></div>
-    <div class="tree" style="left:68%;">🌳<span>2023</span></div>
-    <div class="tree" style="left:76%;">🌳<span>2024</span></div>
-    <div class="tree" style="left:84%;">🌳<span>2025</span></div>
-    <div class="tree" style="left:92%;">🌳<span>2026</span></div>
+    <!-- 👩👨 REAL PNG IMAGES -->
+    <div id="couple">
+        <img src="girl.png" alt="Girl">
+        <img src="boy.png" alt="Boy">
+    </div>
+
+    <!-- 🌳 Trees (2020–2026) -->
+    <div class="tree" style="left:10%;">🌳<span>2020</span></div>
+    <div class="tree" style="left:22%;">🌳<span>2021</span></div>
+    <div class="tree" style="left:34%;">🌳<span>2022</span></div>
+    <div class="tree" style="left:46%;">🌳<span>2023</span></div>
+    <div class="tree" style="left:58%;">🌳<span>2024</span></div>
+    <div class="tree" style="left:70%;">🌳<span>2025</span></div>
+    <div class="tree" style="left:82%;">🌳<span>2026</span></div>
 </div>
 
 <div>
@@ -176,11 +174,6 @@ const bgMusic = document.getElementById("bgMusic");
 const finalScreen = document.getElementById("finalScreen");
 
 const steps = [
-    ["2015", "🌳 You loved me."],
-    ["2016", "🌳 You loved me the most."],
-    ["2017", "🌳 You made me feel so blessed."],
-    ["2018", "🌳 You filled my life with happiness."],
-    ["2019", "🌳 Loving you became my peace."],
     ["2020", "🌳 Thank you for holding me in my darkest times."],
     ["2021", "🌳 Thank you for holding me when I was weak."],
     ["2022", "🌳 Thank you for having me."],
@@ -200,7 +193,7 @@ document.getElementById("startBtn").onclick = () => {
 };
 
 document.getElementById("nextBtn").onclick = () => {
-    couple.style.left = (12 + index * 6) + "%";
+    couple.style.left = (8 + index * 12) + "%";
 
     if (steps[index][1]) {
         message.innerText = steps[index][0] + "\n" + steps[index][1];

@@ -70,26 +70,26 @@ h2 {
     color: #b5838d;
 }
 
-/* 👩👨 Couple with 💞 */
+/* 👩🤝👨 Couple (tighter spacing) */
 #couple {
     position: absolute;
     bottom: 68px;
     left: 8%;
     display: flex;
-    gap: 6px;
+    gap: 2px;              /* ✅ reduced gap */
     align-items: center;
     transition: left 1.5s ease;
 }
 
 #couple img {
-    width: 46px;
+    width: 44px;           /* slightly smaller for better fit */
     height: auto;
     object-fit: contain;
 }
 
-.heart {
-    font-size: 22px;
-    margin: 0 2px;
+.handshake {
+    font-size: 20px;       /* balanced size */
+    line-height: 1;
 }
 
 /* 💬 Message */
@@ -141,10 +141,10 @@ button:active {
 <div id="journey">
     <div id="path"></div>
 
-    <!-- 👩 💞 👨 -->
+    <!-- 👩 🤝 👨 -->
     <div id="couple">
         <img src="girl.png" alt="Girl">
-        <span class="heart">💞</span>
+        <span class="handshake">🤝</span>
         <img src="boy.png" alt="Boy">
     </div>
 

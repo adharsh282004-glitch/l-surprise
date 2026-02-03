@@ -70,7 +70,7 @@ h2 {
     color: #b5838d;
 }
 
-/* 👩🤝👨 Couple (75% size) */
+/* 👩🤝👨 Couple (75%) */
 #couple {
     position: absolute;
     bottom: 68px;
@@ -91,7 +91,6 @@ h2 {
 
 .handshake {
     font-size: 20px;
-    line-height: 1;
 }
 
 /* 💬 Message */
@@ -103,7 +102,7 @@ h2 {
     color: #5f0f40;
 }
 
-/* 🤍 Buttons (base style) */
+/* 🤍 Buttons */
 button {
     margin: 8px;
     padding: 10px 18px;
@@ -111,18 +110,26 @@ button {
     border-radius: 20px;
     cursor: pointer;
     background: #fffaf0;
-    color: #6b4f3f;
     border: 2px solid #6b4f3f;
+    color: #a2d2ff;          /* ✅ same blue as path */
+    font-weight: bold;
 }
 
 button:active {
     transform: scale(0.97);
 }
 
-/* ✨ Hold Hands button special style */
-#startBtn {
-    font-weight: bold;
-    color: #1d4ed8; /* blue */
+/* ❤️ Final Screen */
+#finalScreen {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(#000, #020617);
+    color: #ffb6c1;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
 }
 </style>
 </head>
@@ -153,21 +160,27 @@ button:active {
 
 <div>
     <button id="startBtn">Hold Hands ✨</button>
-    <button id="nextBtn" style="display:none;">Walk Forward</button>
+    <button id="nextBtn" style="display:none;">Walk Forward ✨</button>
 </div>
 
 <div id="message"></div>
 
+<!-- 🎵 MUSIC -->
 <audio id="bgMusic" loop>
     <source src="mounam-cherum.mp3" type="audio/mpeg">
 </audio>
 
-<div id="finalScreen" style="display:none;"></div>
+<!-- ❤️ Final -->
+<div id="finalScreen">
+    <h1>❤️ Forever ❤️</h1>
+    <button onclick="location.reload()">Replay ✨</button>
+</div>
 
 <script>
 const couple = document.getElementById("couple");
 const message = document.getElementById("message");
 const bgMusic = document.getElementById("bgMusic");
+const finalScreen = document.getElementById("finalScreen");
 
 const steps = [
     ["2020🤍", "💕4220💕"],
@@ -176,7 +189,7 @@ const steps = [
     ["2023🤍", "Abhi-Edoo! 4 years aayii🤩\nAmmu-Undampori... 3 year kazhinjittullu😑"],
     ["2024🤍", "Abhi-Edoo! 5 years aayii🤩\nAmmu-Undampori... 4 year kazhinjittullu😑"],
     ["2025🤍", "Abhi-Edoo! 6 years aayii🤩\nAmmu-Undampori... 5 year kazhinjittullu😑"],
-    ["2026🤍", "Abhi-Edoo! 7 year aayalle? 😁"]
+    ["2026🤍", null]
 ];
 
 let index = 0;
@@ -190,9 +203,30 @@ document.getElementById("startBtn").onclick = () => {
 
 document.getElementById("nextBtn").onclick = () => {
     couple.style.left = (8 + index * 12) + "%";
-    message.innerText = steps[index][0] + "\n" + steps[index][1];
+
+    if (steps[index][1]) {
+        message.innerText = steps[index][0] + "\n" + steps[index][1];
+    } else {
+        typeMessage(
+`2026🤍
+
+Abhi-Edoo! 7 year aayalle? 😁`
+        );
+        document.getElementById("nextBtn").style.display = "none";
+        setTimeout(() => finalScreen.style.display = "flex", 30000);
+    }
     index++;
 };
+
+function typeMessage(text) {
+    message.innerText = "";
+    let i = 0;
+    const interval = setInterval(() => {
+        message.innerText += text.charAt(i);
+        i++;
+        if (i === text.length) clearInterval(interval);
+    }, 140);
+}
 </script>
 
 </body>

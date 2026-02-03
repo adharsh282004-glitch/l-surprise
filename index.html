@@ -11,7 +11,7 @@ body {
     font-family: Arial, sans-serif;
     text-align: center;
     color: #2f3e46;
-    background: linear-gradient(#87ceeb, #f5f5f5);
+    background: linear-gradient(#ffd6e0, #ffeaf0);
     overflow-x: hidden;
 }
 
@@ -34,7 +34,7 @@ body {
 
 h2 {
     margin-top: 20px;
-    color: #354f52;
+    color: #6d597a;
 }
 
 /* 🌱 Journey */
@@ -45,22 +45,22 @@ h2 {
     margin-top: 60px;
 }
 
-/* 🟫 Path */
+/* ☁️ Path */
 #path {
     position: absolute;
     bottom: 60px;
     left: 8%;
     width: 84%;
     height: 50px;
-    background: linear-gradient(#c2a679, #a68b5b);
+    background: linear-gradient(#bde0fe, #a2d2ff);
     border-radius: 25px;
 }
 
-/* 🌳 Trees */
+/* 💌 Love letters */
 .tree {
     position: absolute;
     bottom: 120px;
-    font-size: 40px;
+    font-size: 36px;
     text-align: center;
 }
 
@@ -70,13 +70,13 @@ h2 {
     color: #b5838d;
 }
 
-/* 👩👨 Couple (PNG – transparent background) */
+/* 👩👨 Couple with 💞 */
 #couple {
     position: absolute;
     bottom: 68px;
     left: 8%;
     display: flex;
-    gap: 8px;
+    gap: 6px;
     align-items: center;
     transition: left 1.5s ease;
 }
@@ -85,7 +85,11 @@ h2 {
     width: 46px;
     height: auto;
     object-fit: contain;
-    /* no border, no background — natural PNG look */
+}
+
+.heart {
+    font-size: 22px;
+    margin: 0 2px;
 }
 
 /* 💬 Message */
@@ -94,19 +98,23 @@ h2 {
     font-size: 16px;
     max-width: 90%;
     white-space: pre-wrap;
-    color: #344e41;
+    color: #5f0f40;
 }
 
-/* Buttons */
+/* 🤍 Buttons */
 button {
     margin: 8px;
     padding: 10px 18px;
     font-size: 15px;
     border-radius: 20px;
-    border: none;
     cursor: pointer;
-    background: #cad2c5;
-    color: #2f3e46;
+    background: #fffaf0;
+    color: #6b4f3f;
+    border: 2px solid #6b4f3f;
+}
+
+button:active {
+    transform: scale(0.97);
 }
 
 /* ❤️ Final Screen */
@@ -133,20 +141,21 @@ button {
 <div id="journey">
     <div id="path"></div>
 
-    <!-- 👩👨 REAL PNG IMAGES -->
+    <!-- 👩 💞 👨 -->
     <div id="couple">
         <img src="girl.png" alt="Girl">
+        <span class="heart">💞</span>
         <img src="boy.png" alt="Boy">
     </div>
 
-    <!-- 🌳 Trees (2020–2026) -->
-    <div class="tree" style="left:10%;">🌳<span>2020</span></div>
-    <div class="tree" style="left:22%;">🌳<span>2021</span></div>
-    <div class="tree" style="left:34%;">🌳<span>2022</span></div>
-    <div class="tree" style="left:46%;">🌳<span>2023</span></div>
-    <div class="tree" style="left:58%;">🌳<span>2024</span></div>
-    <div class="tree" style="left:70%;">🌳<span>2025</span></div>
-    <div class="tree" style="left:82%;">🌳<span>2026</span></div>
+    <!-- 💌 Years -->
+    <div class="tree" style="left:10%;">💌<span>2020</span></div>
+    <div class="tree" style="left:22%;">💌<span>2021</span></div>
+    <div class="tree" style="left:34%;">💌<span>2022</span></div>
+    <div class="tree" style="left:46%;">💌<span>2023</span></div>
+    <div class="tree" style="left:58%;">💌<span>2024</span></div>
+    <div class="tree" style="left:70%;">💌<span>2025</span></div>
+    <div class="tree" style="left:82%;">💌<span>2026</span></div>
 </div>
 
 <div>
@@ -174,13 +183,13 @@ const bgMusic = document.getElementById("bgMusic");
 const finalScreen = document.getElementById("finalScreen");
 
 const steps = [
-    ["2020", "🌳 Thank you for holding me in my darkest times."],
-    ["2021", "🌳 Thank you for holding me when I was weak."],
-    ["2022", "🌳 Thank you for having me."],
-    ["2023", "🌳 Thank you for being my love."],
-    ["2024", "🌳 Everything in my life changed in a good way because of you."],
-    ["2025", "🌳 You stayed, even when life was hard."],
-    ["2026", null]
+    ["2020🤍", "💕4220💕"],
+    ["2021🤍", "Abhi-Edoo! 2 years aayii🤩\nAmmu-Undampori... 1 year kazhinjittullu😑"],
+    ["2022🤍", "Abhi-Edoo! 3 years aayii🤩\nAmmu-Undampori... 2 year kazhinjittullu😑"],
+    ["2023🤍", "Abhi-Edoo! 4 years aayii🤩\nAmmu-Undampori... 3 year kazhinjittullu😑"],
+    ["2024🤍", "Abhi-Edoo! 5 years aayii🤩\nAmmu-Undampori... 4 year kazhinjittullu😑"],
+    ["2025🤍", "Abhi-Edoo! 6 years aayii🤩\nAmmu-Undampori... 5 year kazhinjittullu😑"],
+    ["2026🤍", null]
 ];
 
 let index = 0;
@@ -199,14 +208,9 @@ document.getElementById("nextBtn").onclick = () => {
         message.innerText = steps[index][0] + "\n" + steps[index][1];
     } else {
         typeMessage(
-`2026
+`2026🤍
 
-🌳 My dear ponnu,
-
-You hold me in my darkest times.
-You have been there with me in every season.
-Just know that my whole heart wishes you the most happiness.
-I love you. ❤️`
+Abhi-Edoo! 7 year aayalle? 😁`
         );
         document.getElementById("nextBtn").style.display = "none";
         setTimeout(() => finalScreen.style.display = "flex", 30000);
